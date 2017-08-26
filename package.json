@@ -1,0 +1,19 @@
+{
+  "name": "ng-clientlibs",
+  "version": "1.0.0",
+  "description": "AEM clientlibs script",
+  "main": "clientlibs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hariprasad025/ng-clientlibs.git"
+  },
+  "author": "Hariprasad <hariprasad025@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hariprasad025/ng-clientlibs/issues"
+  },
+  "homepage": "https://github.com/hariprasad025/ng-clientlibs#readme"
+}
