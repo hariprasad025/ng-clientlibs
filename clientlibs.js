@@ -6,7 +6,8 @@ const optionDefinitions = [
 const options = cmd(optionDefinitions)
 
 var _readFiles = function(dirname, onError) {
-  fs.readdir(dirname, function(err, filenames) {
+  var appDirName = dirname + "/app";
+  fs.readdir(appDirName, function(err, filenames) {
     if (err) {
       onError(err);
       return;
@@ -19,6 +20,7 @@ var _readFiles = function(dirname, onError) {
 var _updateJsTxt = function(dirname,filenames){
 	var stream = fs.createWriteStream(dirname + "/js.txt");
 		stream.once('open', function(fd) {
+			stream.write("#base=app\r\n");
 			filenames.forEach(function(filename) {
 				console.log("js : ", filename);
 				if(endsWith(filename, '.js')){
@@ -31,6 +33,7 @@ var _updateJsTxt = function(dirname,filenames){
 
 var _updateCssTxt = function(dirname,filenames){
 	var stream = fs.createWriteStream(dirname + "/css.txt");
+		stream.write("#base=app\r\n");
 		stream.once('open', function(fd) {
 			filenames.forEach(function(filename) {
 				console.log("css : ", filename);

@@ -1,6 +1,6 @@
 {
   "name": "ng-clientlibs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "AEM clientlibs script",
   "main": "clientlibs.js",
   "dependencies": {
