@@ -1,5 +1,6 @@
 const cmd = require('command-line-args');
 const fs = require('fs');
+const cheerio = require('cheerio');
 const optionDefinitions = [
   { name: 'src', type: String}
 ]
@@ -7,14 +8,38 @@ const options = cmd(optionDefinitions)
 
 var _readFiles = function(dirname, onError) {
   var appDirName = dirname + "/app";
-  fs.readdir(appDirName, function(err, filenames) {
+  var indexfile = appDirName + "/index.html";
+  fs.readFile(indexfile, 'utf8', function read(err, data) {
+		if (err) {
+			onError(err);
+		}
+		content = data;
+		console.log(content);   
+		var filenames = _processFile(dirname,content);          
+	});
+  
+  /*fs.readdir(appDirName, function(err, filenames) {
     if (err) {
       onError(err);
       return;
     }
 	_updateJsTxt(dirname,filenames);
 	_updateCssTxt(dirname,filenames);	
-  });
+  }); */
+}
+
+var _processFile = function(dirname,content){
+	var $ = cheerio.load(content);
+
+    var linkHrefs = $('link').map(function(i) {
+      return $(this).attr('href');
+    }).get();
+	_updateCssTxt(dirname,linkHrefs);	
+	
+    var scriptSrcs = $('script').map(function(i) {
+      return $(this).attr('src');
+    }).get();
+	_updateJsTxt(dirname,scriptSrcs);
 }
 
 var _updateJsTxt = function(dirname,filenames){

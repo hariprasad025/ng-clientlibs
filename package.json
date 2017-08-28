@@ -1,10 +1,11 @@
 {
   "name": "ng-clientlibs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "AEM clientlibs script",
   "main": "clientlibs.js",
   "dependencies": {
-    "command-line-args" : "^4.0.7"
+    "command-line-args" : "^4.0.7",
+	"cheerio" : "^1.0.0-rc.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
